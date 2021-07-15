@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',  [ListingController::class,'index'])->name('listings.index');
 Route::get('/create',  [ListingController::class,'create'])->name('listings.create');
+Route::get('/show',  [ListingController::class,'show'])->name('listings.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
