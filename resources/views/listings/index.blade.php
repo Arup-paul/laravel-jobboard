@@ -1,4 +1,7 @@
 <x-app-layout>
-    <h2>Hello , job listing</h2>
+
+    <x-hero></x-hero>
+
+
 </x-app-layout>
 
