@@ -24,23 +24,10 @@ class ListingController extends Controller
          if($request->has('s')){
             $query  = strtolower($request->get('s'));
             $listings = $listings->filter(function($listing) use($query){
-
-                if(Str::contains(strtolower($listing->title),$query)){
-                    return true;
-                }
-
-                if(Str::contains(strtolower($listing->company),$query)){
-                    return true;
-                }
-
-                if(Str::contains(strtolower($listing->location),$query)){
-                    return true;
-                }
-                if(Str::contains(strtolower($listing->content),$query)){
-                    return true;
-                }
-
-                return false;
+                return  Str::contains(strtolower($listing->title),$query)
+                     || Str::contains(strtolower($listing->company),$query)
+                     || Str::contains(strtolower($listing->location),$query)
+                     || Str::contains(strtolower($listing->content),$query);
             });
 
          }
@@ -84,7 +71,7 @@ class ListingController extends Controller
              'payment_method_id' => 'required',
          ];
 
-         if(Auth::check()){
+         if(!Auth::check()){
              $validateArray = array_merge($validateArray,[
                  'email' => 'required|email|unique:users',
                  'password' => 'required|confirmed|min:5',
